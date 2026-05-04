@@ -1,6 +1,6 @@
 <template>
     <div class="count">
-        <h2>当前求和为：{{ countStore.sum }}</h2>
+        <h2>当前求和为：{{ countStore.sum }}, 放大2倍后：{{ bigSum }}</h2>
         <select v-model.number="n">
             <option value="1">1</option>
             <option value="2">2</option>
@@ -14,9 +14,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import {useCountStore} from '@/store/count'
+import { storeToRefs } from 'pinia'
 
 const n = ref(0)
 const countStore = useCountStore()
+
+// pinia 的storeToRefs，只将state中的数据转换为响应式数据，vue中toRefs会将数据+方法都转换为响应式数据
+const {sum, schaool, address, bigSum, upperSchool} = storeToRefs(countStore)
+console.log('storeToRefs', storeToRefs(countStore))
 // 以下两种方法都可以拿到state中的数据
 // console.log(countStore.sum)
 // console.log(countStore.$state.sum)
