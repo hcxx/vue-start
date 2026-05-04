@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "@/pages/Home.vue";
 import News from "@/pages/News.vue";
 import About from "@/pages/About.vue";
+import Detail from "@/pages/Detail.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -15,7 +16,14 @@ const router = createRouter({
     {
       name: "xinwen",
       path: "/news",
-      component: News
+      component: News,
+      children: [
+        {
+          name: "xinwenDetail",
+          path: "detail/:id/:title/:content",
+          component: Detail
+        }
+      ]
     },
     {
       name: "guanyu",

@@ -2,19 +2,20 @@
     <div class="news">
         <ul>
             <li v-for="news in newsList" :key="news.id">
-                <!-- 第一种params参数传递方式 -->
-                <!-- <RouterLink :to="`/news/detail/${news.id}/${news.title}/${news.content}`">{{ news.title }}</RouterLink> -->
-
+                <!-- 第一种query参数传递方式 -->
+                <!-- <RouterLink :to="`/news/detail?id=${news.id}&title=${news.title}&content=${news.content}`">{{ news.title }}</RouterLink> -->
+                
+                <!-- 第二种query参数传递方式 -->
                 <RouterLink :to="{
-                    // params参数只能用name，parmas中也不敢用对象和数组
-                    name:'xinwenDetail',
-                    params:{
+                    // path也可以用name，name是路由的名称
+                    path:'/news/detail',
+                    query:{
                         id:news.id,
                         title:news.title,
                         content:news.content
                     }
                 }">
-                    {{ news.title }}
+                {{ news.title }}
                 </RouterLink>
             </li>
         </ul>
