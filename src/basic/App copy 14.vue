@@ -1,8 +1,8 @@
 <!-- 组合式函数 -->
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useMouse } from './components/Logicreuse3/Mouse.js'
-import { useFetch } from './components/Logicreuse3/fetch.js'
+import { useMouse } from '../components/Logicreuse3/Mouse.js'
+import { useFetch } from '../components/Logicreuse3/fetch.js'
 
 // 鼠标跟踪器示例
 const {x, y} = useMouse()
