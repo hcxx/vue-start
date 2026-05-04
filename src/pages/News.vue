@@ -4,7 +4,7 @@
             <li v-for="news in newsList" :key="news.id">
                 <!-- 第一种params参数传递方式 -->
                 <!-- <RouterLink :to="`/news/detail/${news.id}/${news.title}/${news.content}`">{{ news.title }}</RouterLink> -->
-
+                <button @click="showNewsDetail(news)">查看新闻</button>
                 <RouterLink :to="{
                     // params参数只能用name，parmas中也不敢用对象和数组
                     name:'xinwenDetail',
@@ -27,7 +27,7 @@
 
 <script setup lang="ts" name="News">
 import { ref } from 'vue';
-import { RouterLink, RouterView } from 'vue-router';
+import { RouterLink, RouterView, useRouter } from 'vue-router';
 
 
 const newsList = ref([
@@ -52,6 +52,24 @@ const newsList = ref([
         content: "新闻004的内容"
     }
 ])
+
+const router = useRouter();
+// ts限定类型
+interface NewsInterface {
+    id:number,
+    title:string,
+    content:string
+}
+function showNewsDetail(news:NewsInterface) {
+    router.push({
+        name:'xinwenDetail',
+        params:{
+            id:news.id,
+            title:news.title,
+            content:news.content
+        }
+    })
+}
 </script>
 
 <style scoped>
